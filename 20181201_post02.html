@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <style>
+    .post_wrap *{margin:0;padding:0;font-size:14px;line-height:1}
+    .post_wrap ul li{margin-left:0 !important;margin-bottom:0 !important;list-style:none !important;}
+    .post_wrap h2[class*="tit"]{margin-bottom:15px;font-size:18px;color:#5e7ea9;line-height:1.4}
+    .post_wrap h2.tit2{margin-top:40px;margin-bottom:5px}
+    .post_wrap p{padding-left:6px;line-height:1.3 !important;}
+    .post_wrap .list_hyp{padding-left:0 !important;}
+    .post_wrap .list_hyp li{position:relative;margin-top:3px;padding-left:20px;line-height:1.4}
+    .post_wrap .list_hyp li:before{position:absolute;left:8px;top:10px;width:5px;height:1px;background:#ccc;content:''}
+    .post_wrap dl{margin-top:15px}
+    .post_wrap dl dt{padding-left:6px;font-weight:bold;font-size:17px;color:#888}
+    .post_wrap dl dd{position:relative;margin-top:3px;padding-left:20px;line-height:1.4}
+    .post_wrap dl dd:before{position:absolute;left:8px;top:8px;width:4px;height:4px;background:#ccc;border-radius:50%;content:''}
+    .post_wrap .point1{color:#fa5b5b;font-size:14px}
+    .post_wrap .point2{margin-top:10px;color:#ffa42d;font-size:14px}
+    .post_wrap dd.point2:before{display:none}
+    .post_wrap .colorscripter-code{margin:5px}
+    .post_wrap .colorscripter-code-table td:nth-of-type(2){width:100%}
+    .post_wrap .example{margin:20px 5px 10px;padding:20px 0;border:3px solid #ddd}
+    .post_wrap .example:after{display:block;clear:both;content:''}
+    .post_wrap .example [class*="box"]{width:150px;height:30px;padding:10px;background:#ff6363;color:#fff;font-weight:bold;font-size:20px;line-height:30px;text-align:center}
+    .post_wrap .list_num{margin-top:10px;padding-left:6px}
+    .post_wrap .list_num > li{font-size:16px;margin-top:15px}
+    .post_wrap .list_num > li:first-child{margin-top:10px}
+    .post_wrap .list_num > li > span{font-weight:bold;font-size:16px;color:#222;}
+    .post_wrap .list_num li p{margin-top:5px !important;line-height:1.4;font-size:14px;}
+    </style>
+    <body>
+        <div class="post_wrap">
+            <h2 class="tit">float 속성</h2>
+            <ul class="list_hyp">
+                <li>float은 레이아웃을 잡을 때, 주로 사용하는 속성이다. 요소를 왼쪽 또는 오른쪽에 배치시킬때 사용한다. 워드에서 텍스트 좌/우 정렬버튼을 생각하면 된다.</li>
+                <li>요소에 float속성을 주게되면 그 요소가 inline이더라도 <span class="point1">블럭의 성질을 가지게 된다.</span> (float을 주었을 때 요소의 넓이만큼 나란히 배치되기 때문에 더 정확히 보면 inline-block성질을 가진다.)</li>
+            </ul>
+            <dl class="list_dot">
+                <dt>float</dt>
+                <dd>left : 요소를 왼쪽으로 배치시킨다.</dd>
+                <dd>right : 요소를 오른쪽으로 배치시킨다.</dd>
+                <dd>none : 기본값. 플로팅하지 않는다.</dd>
+            </dl>
+            <div class="example">
+                <span class="box1" style="float:left;">float:left</span>
+                <span class="box2" style="float:right;background:#5555ff">float:right</span>
+            </div>
+            <p class="point2">※ float을 적용한 요소의 부모요소가 float을 적용한 요소의 높이값을 잡지못해 감싸고 있는 부모의 높이가 0이된다. 이런 경우에는 부모요소에 overflow:hidden을 주거나 부모요소에 가상선택자를 사용하는 방법이 있다.(아래 float 해제하는 방법에서 설명)</p>
+
+            <h2 class="tit2">float 해제하는 방법</h2>
+            <p>float을 해제하는 방법은 여러가지 방법이 있는데 그 중 흔히 사용하는 3가지이다.</p>
+            <ul class="list_num">
+                <li><span>1. clear속성 사용한다. float이 적용된 요소 다음에 나오는 요소에 clear를 사용한다.</span>
+                    <dl class="list_dot" style="margin:7px 10px">
+                        <dt>clear 속성</dt>
+                        <dd>left : 왼쪽으로 지정된 플로팅을 해제시킨다.</dd>
+                        <dd>right : 오른쪽으로 지정된 플로팅을 해제시킨다.</dd>
+                        <dd>none : 기본값. 플로팅을 해제시키지 않는다.</dd>
+                    </dl>
+                </li>
+                <li><span>2. 부모요소에 overflow:hidden 사용한다.</span>
+                    <p>위에서 말했던 float가 적용된 자식의 부모요소가 높이값을 잡지 못해 0이될 때, overflow를 사용하면 높이값을 잡아준다. 하지만 부모의 높이값을 지정하지 않거나 자식보다 클 경우이며, 자식의 높이값이 부모보다 클 경우 overflow:hidden를 사용하면 요소가 짤려서 가려진다.</p>
+                </li>
+                <li><span class="point1">3. 가상선택자 ::after 사용한다.</span>
+                    <p>가상선택자를 이용하는 것은 float 해제하는데 가장 많이 사용하는 방법이다. 말그대로 부모요소 뒤에 가상선택자를 사용하여 가상요소를 집어넣어 clearfix하는 방법이다. 이 방법 역시 위에서 설명한 부모의 높이값도 잡아준다. 가장 확실하고 깔끔한 방법인것같다.</p>
+                    <div class="colorscripter-code" style="color:#f0f0f0; font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; position:relative !important; overflow:auto"><table class="colorscripter-code-table" style="margin:0; padding:0; border:none; background-color:#272727; border-radius:4px;" cellspacing="0" cellpadding="0"><tr><td style="padding:6px; border-right:2px solid #4f4f4f"><div style="margin:0; padding:0; word-break:normal; text-align:right; color:#aaa; font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; line-height:130%"><div style="line-height:130%">1</div><div style="line-height:130%">2</div><div style="line-height:130%">3</div><div style="line-height:130%">4</div><div style="line-height:130%">5</div></div></td><td style="padding:6px 0"><div style="margin:0; padding:0; color:#f0f0f0; font-family:Consolas, 'Liberation Mono', Menlo, Courier, monospace !important; line-height:130%"><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#ff3399">parent::after</span>{<span style="color:#4be6fa"></span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#4be6fa">&nbsp;&nbsp;&nbsp;&nbsp;display</span><span style="color:#ff3399">:</span><span style="color:#E083FF">block</span><span style="color:#ff3399">;</span><span style="color:#4be6fa"></span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#4be6fa">&nbsp;&nbsp;&nbsp;&nbsp;clear</span><span style="color:#ff3399">:</span><span style="color:#E083FF">both</span><span style="color:#ff3399">;</span><span style="color:#4be6fa"></span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#4be6fa">&nbsp;&nbsp;&nbsp;&nbsp;content</span><span style="color:#ff3399">:</span><span style="color:#E083FF">''</span><span style="color:#ff3399">;</span><span style="color:#E083FF"></span></div><div style="padding:0 6px; white-space:pre; line-height:130%"><span style="color:#E083FF"></span>}</div></div></td><td style="vertical-align:bottom; padding:0 2px 4px 0"><a href="http://colorscripter.com/info#e" target="_blank" style="text-decoration:none; color:white"><span style="font-size:9px; word-break:normal; background-color:#4f4f4f; color:white; border-radius:10px; padding:1px">cs</span></a></td></tr></table></div>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>
